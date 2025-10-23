@@ -20,7 +20,7 @@ typedef struct Empregado {
 void add_empregado(Empregado arr[], int *pos);
 int busca_max_sal(Empregado arr[], int pos);
 int busca_nome(Empregado arr[], int pos, char nome[]);
-void imprimir(Empregado arr[], int pos);
+void imprimir_tabela(Empregado arr[], int pos);
 void imprimir_empegado(Empregado empregado[], int id);
 void menu();
 
@@ -53,7 +53,7 @@ int main() {
                    : imprimir_empegado(T, result);
 
     case 'd':
-      imprimir(T, pos);
+      imprimir_tabela(T, pos);
       continue;
 
     case 's':
@@ -137,7 +137,7 @@ int busca_nome(Empregado arr[], int pos, char nome[]) {
   return encontrou;
 }
 
-void imprimir(Empregado arr[], int pos) {
+void imprimir_tabela(Empregado arr[], int pos) {
   printf("\n-----------------------------------------------\n");
   for (int i = 0; i < pos; i++) {
     printf("id: %d\n", i);
