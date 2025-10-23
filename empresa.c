@@ -25,7 +25,9 @@ void imprimir_empegado(Empregado empregado[], int id);
 void menu();
 
 int main() {
+  char nome[20];
   Empregado T[50];
+  int result = 0;
   int pos = 0;
   char op;
 
@@ -40,12 +42,15 @@ int main() {
       continue;
 
     case 'b':
-      int result = busca_max_sal(T, pos);
+      result = busca_max_sal(T, pos);
       imprimir_empegado(T, result);
 
     case 'c':
-      char nome[20];
-      busca_nome(T, pos, nome);
+      printf("digite o nome do funcionário: ");
+      fgets(nome, 20, stdin);
+      result = busca_nome(T, pos, nome);
+      result == -1 ? printf("funcionario nao encontrado!\n")
+                   : imprimir_empegado(T, result);
 
     case 'd':
       imprimir(T, pos);
