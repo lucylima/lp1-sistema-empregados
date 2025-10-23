@@ -21,6 +21,7 @@ void add_empregado(Empregado arr[], int *pos);
 int busca_max_sal(Empregado arr[], int pos);
 int busca_nome(Empregado arr[], int pos, char nome[]);
 void imprimir(Empregado arr[], int pos);
+void imprimir_empegado(Empregado empregado[], int id);
 void menu();
 
 int main() {
@@ -39,7 +40,8 @@ int main() {
       continue;
 
     case 'b':
-      busca_max_sal(T, pos);
+      int result = busca_max_sal(T, pos);
+      imprimir_empegado(T, result);
 
     case 'c':
       char nome[20];
@@ -65,6 +67,18 @@ void menu() {
   printf("d - imprimir todos os funcionarios\n");
   printf("s - sair");
   printf("\n>>> ");
+}
+
+void imprimir_empegado(Empregado empregado[], int id) {
+  printf("\n");
+  printf("id: %d\n", id);
+  printf("Nome: %s\n", empregado[id].nome);
+  printf("CPF: %s\n", empregado[id].cpf);
+  printf("sexo: %c\n", empregado[id].sexo);
+  printf("idade: %d\n", empregado[id].idade);
+  printf("cargo: %s\n", empregado[id].cargo);
+  printf("salario: %.2f\n", empregado[id].salario);
+  printf("-----------------------------------------------\n");
 }
 
 void add_empregado(Empregado arr[], int *pos) {
@@ -128,6 +142,6 @@ void imprimir(Empregado arr[], int pos) {
     printf("idade: %d\n", arr[i].idade);
     printf("cargo: %s\n", arr[i].cargo);
     printf("salario: %.2f\n", arr[i].salario);
-    printf("-----------------------------------------------");
+    printf("-----------------------------------------------\n");
   }
 }
