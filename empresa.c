@@ -2,13 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-void limpar_buffer_entrada() {
+void limpar_buffer_entrada()
+{
   int c;
-  while ((c = getchar()) != '\n' && c != EOF) {
+  while ((c = getchar()) != '\n' && c != EOF)
+  {
   }
 }
 
-typedef struct Empregado {
+typedef struct Empregado
+{
   char nome[20];
   char cpf[11];
   char sexo;
@@ -23,23 +26,25 @@ int busca_nome(Empregado arr[], int pos, char nome[]);
 void imprimir_tabela(Empregado arr[], int pos);
 void imprimir_empegado(Empregado empregado[], int id);
 void menu();
+void limparTela();
 
-int main() {
+int main()
+{
   char nome[20];
   Empregado T[50];
   int result = 0;
   int pos = 0;
   char op;
 
-  while (1) {
+  while (1)
+  {
     menu();
     scanf(" %c", &op);
-    limpar_buffer_entrada();
 
-    switch (op) {
+    switch (op)
+    {
     case 'a':
       add_empregado(T, &pos);
-      continue;
 
     case 'b':
       result = busca_max_sal(T, pos);
@@ -51,10 +56,8 @@ int main() {
       result = busca_nome(T, pos, nome);
       result == -1 ? printf("funcionario nao encontrado!\n")
                    : imprimir_empegado(T, result);
-
     case 'd':
       imprimir_tabela(T, pos);
-      continue;
 
     case 's':
       exit(0);
@@ -63,8 +66,9 @@ int main() {
   return 0;
 }
 
-void menu() {
-  printf("\n");
+void menu()
+{
+  limparTela();
   printf("seja bem vindo ao menu\nescolha uma opcao:\n");
   printf("a - inserir um empregado\n");
   printf("b - buscar por maior salario\n");
@@ -74,8 +78,11 @@ void menu() {
   printf("\n>>> ");
 }
 
-void imprimir_empegado(Empregado empregado[], int id) {
-  printf("\n");
+void limparTela() { system("clear"); }
+
+void imprimir_empegado(Empregado empregado[], int id)
+{
+  limparTela();
   printf("id: %d\n", id);
   printf("Nome: %s\n", empregado[id].nome);
   printf("CPF: %s\n", empregado[id].cpf);
@@ -86,7 +93,9 @@ void imprimir_empegado(Empregado empregado[], int id) {
   printf("-----------------------------------------------\n");
 }
 
-void add_empregado(Empregado arr[], int *pos) {
+void add_empregado(Empregado arr[], int *pos)
+{
+  limpar_buffer_entrada();
   printf("digite o nome do funcionário: ");
   fgets(arr[*pos].nome, 20, stdin);
 
@@ -106,17 +115,19 @@ void add_empregado(Empregado arr[], int *pos) {
 
   printf("digite o salario: ");
   scanf("%f", &arr[*pos].salario);
-  limpar_buffer_entrada();
 
   (*pos)++;
 }
 
-int busca_max_sal(Empregado arr[], int pos) {
+int busca_max_sal(Empregado arr[], int pos)
+{
   int max = arr[0].salario;
   int encontrou = 0;
 
-  for (int i = 0; i < pos; i++) {
-    if (arr[i].salario >= max) {
+  for (int i = 0; i < pos; i++)
+  {
+    if (arr[i].salario >= max)
+    {
       max = arr[i].salario;
       encontrou = i;
     }
@@ -125,11 +136,14 @@ int busca_max_sal(Empregado arr[], int pos) {
   return encontrou;
 }
 
-int busca_nome(Empregado arr[], int pos, char nome[]) {
+int busca_nome(Empregado arr[], int pos, char nome[])
+{
   int encontrou = -1;
 
-  for (int i = 0; i < pos; i++) {
-    if (strcmp(arr[i].nome, nome) == 0) {
+  for (int i = 0; i < pos; i++)
+  {
+    if (strcmp(arr[i].nome, nome) == 0)
+    {
       encontrou = i;
     }
   }
@@ -137,9 +151,12 @@ int busca_nome(Empregado arr[], int pos, char nome[]) {
   return encontrou;
 }
 
-void imprimir_tabela(Empregado arr[], int pos) {
+void imprimir_tabela(Empregado arr[], int pos)
+{
+  limparTela();
   printf("\n-----------------------------------------------\n");
-  for (int i = 0; i < pos; i++) {
+  for (int i = 0; i < pos; i++)
+  {
     printf("id: %d\n", i);
     printf("Nome: %s\n", arr[i].nome);
     printf("CPF: %s\n", arr[i].cpf);
